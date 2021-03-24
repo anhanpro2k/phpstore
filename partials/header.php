@@ -1,4 +1,6 @@
-
+<?php
+include("partials/connect.php");
+?>
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
@@ -9,7 +11,6 @@
 					<div class="left-top-bar">
 						Free shipping for standard order over $100
 					</div>
-
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							Help & FAQs
@@ -55,19 +56,19 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart.php">Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.php">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</div>	
