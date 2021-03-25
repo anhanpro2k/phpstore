@@ -7,6 +7,7 @@
 <div class="wrapper">
 
 <?php 
+include("adminpartials/session.php");
 include("adminpartials/header.php");
 include("adminpartials/aside.php");
 ?>  
@@ -37,38 +38,39 @@ include("adminpartials/aside.php");
             </div>
 
             <div class="col-sm-6">
-                <form role="form">
+                <form role="form" action="producthandler.php" method="POST" enctype="multipart/form-data">
                     <h1>Product</h1>
                     <div class="box-body">
                         <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Product">
+                        <input type="text" class="form-control" id="name" placeholder="Enter Product Name" name="name">
                         </div>
                         
                         <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="text" class="form-control" id="price" placeholder="Price">
-
-                        <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Product">
-                        </div>
+                        <input type="text" class="form-control" id="price" placeholder="Price" name="price">
                         
                         <div class="form-group">
                         <label for="picture">File input</label>
-                        <input type="file" id="picture" >
+                        <input type="file" id="picture" name="file">
                         </div>
 
                         <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" class="form-control" rows="10" placeholder="Enter Description"></textarea>
+                        <textarea id="description" class="form-control" rows="10" placeholder="Enter Description" name="description"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="category">Category</label>
-                            <select>
-                                <option>Shirt</option>
-                                <option>Pant</option>
+                            <label for="category" >Category</label>
+                            <select name="category">
+                                <?php 
+                                    include("../partials/connect.php");
+                                    $cat="SELECT * FROM categories";
+                                    $results = mysqli_query($connect, $cat);
+                                    while($row=mysqli_fetch_assoc($results)) {
+                                        echo "<option value=".$row['id'].">".$row['name']."</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
 

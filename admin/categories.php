@@ -7,6 +7,7 @@
 <div class="wrapper">
 
 <?php 
+include("adminpartials/session.php");
 include("adminpartials/header.php");
 include("adminpartials/aside.php");
 ?>  
@@ -37,18 +38,16 @@ include("adminpartials/aside.php");
             </div>
 
             <div class="col-sm-6">
-                <form role="form">
+                <form role="form" action="cathandler.php" method="POST">
                     <div class="box-body">
                         <div class="form-group">
-                        <h1>Product</h1>
+                        <h1>Category</h1>
                         <div class="box-body">
-                        <div class="form-group">
-                        <label for="category">Product</label>
-                        <input type="txt" class="form-control" id="category" placeholder="Enter category">
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <input type="txt" class="form-control" id="category" placeholder="Enter category" name="name">
+                            </div>
                         </div>
-                        
-                        </div>
-                    </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

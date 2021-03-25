@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <?php
+    //To catch session
+    include("adminpartials/session.php");
     include("adminpartials/head.php");
     ?>
 <body class="hold-transition skin-blue sidebar-mini ">
