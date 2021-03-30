@@ -47,7 +47,7 @@ include("adminpartials/aside.php");
                     <h3>Name : {$final['name']}</h3>
                     <h3>Price : {$final['price']}</h3>
                     <h3>Description : {$final['description']}</h3>
-                    <img src=\"{$final['image']}\">
+                    <img src=\"{$final['picture']}\" width=\"100px\" height=\"100px\">
                     ";
                 ?>
             </div>

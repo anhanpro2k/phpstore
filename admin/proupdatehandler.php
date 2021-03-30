@@ -8,15 +8,15 @@ if(isset($_POST['update'])) {
     $file_store = "../uploads/".$file_name;
     move_uploaded_file($file_tmp, $file_store);
     
-    if(!$file_name) { //didn't choose file
-        $sql = "UPDATE products
-        SET name = '{$_POST['productName']}', 
-        price = {$_POST['price']},
-        description = '{$_POST['description']}',
-        category_id = {$_POST['category']}
-        WHERE id = {$_POST['form_id']}
-    ";
-    } else {
+    // if(!$file_name) { //didn't choose file
+    //     $sql = "UPDATE products
+    //     SET name = '{$_POST['productName']}', 
+    //     price = {$_POST['price']},
+    //     description = '{$_POST['description']}',
+    //     category_id = {$_POST['category']}
+    //     WHERE id = {$_POST['form_id']}
+    // ";
+    // } else {
         $sql = "UPDATE products
         SET name = '{$_POST['productName']}', 
         price = {$_POST['price']},
@@ -24,8 +24,8 @@ if(isset($_POST['update'])) {
         category_id = {$_POST['category']},
         picture = '$file_path'
         WHERE id = {$_POST['form_id']}
-    ";
-    }
+    -- ";
+    // -- }
 
 
     

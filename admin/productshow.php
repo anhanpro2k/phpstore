@@ -49,8 +49,11 @@ include("adminpartials/aside.php");
 
                       <a href=\"proupdate.php?up_id={$final['id']}\">
                         <button>Update</button>
-                      </a><br/><hr/>
+                      </a>
 
+                      <a href=\"prodelete.php?del_id={$final['id']}\">
+                        <button style=\"color:red\">Delete</button>
+                      </a><br/><hr/>
                       ";
                     }
                 ?>

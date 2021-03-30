@@ -59,7 +59,8 @@ include("adminpartials/aside.php");
                         
                         <div class="form-group">
                         <label for="picture">File input</label>
-                        <input type="file" id="picture" name="file" value="google.png">
+                        
+                        <input type="file" id="picture" name="file" value="../uploads/airmax.jpeg">
                         </div>
 
                         <div class="form-group">
