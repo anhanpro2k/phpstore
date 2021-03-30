@@ -21,7 +21,6 @@
             header("location: adminlogin.php");
         }
     }
-
 ?>
 
 <div class="row">

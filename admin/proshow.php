@@ -13,6 +13,7 @@ include("adminpartials/aside.php");
 ?>  
 
 
+  <!-- Left side column. contains the logo and sidebar -->
   <?php 
   include("adminpartials/aside")
   ?>
@@ -33,29 +34,26 @@ include("adminpartials/aside.php");
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class ="col-sm-3">
+            <div class ="col-sm-9">
+
+                <?php
+                    include('../partials/connect.php'); //Import connect
+                    $id=$_GET['pro_id'];
+                    $sql = "SELECT * FROM products WHERE id = {$id}";
+                    $results = $connect -> query($sql);
+                    $final=$results->fetch_assoc();
+                    echo "You are selected product:
+                    <h3>Id : {$final['id']}</h3>
+                    <h3>Name : {$final['name']}</h3>
+                    <h3>Price : {$final['price']}</h3>
+                    <h3>Description : {$final['description']}</h3>
+                    <img src=\"{$final['image']}\">
+                    ";
+                ?>
             </div>
 
-            <div class="col-sm-6">
-                <form role="form" action="cathandler.php" method="POST">
-                    <div class="box-body">
-                        <div class="form-group">
-                        <h1>Category</h1>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <input type="txt" class="form-control" id="category" placeholder="Enter category" name="name">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
+            
+            
             <div class ="col-sm-3">
             </div>
         </div>

@@ -39,7 +39,13 @@
           </a>
         </li>
 
-        
+        <li>
+          <a href="adminpartials/logout.php">
+            <i class="fa fa-th"></i> <span>Sign Out</span>
+          </a>
+        </li>
+
+
       </ul>  
     </section>
     <!-- /.sidebar -->
