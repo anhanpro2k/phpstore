@@ -35,7 +35,7 @@ include("adminpartials/aside.php");
     <section class="content">
         <div class="row">
             <div class ="col-sm-9">
-
+  
                 <?php
                     include('../partials/connect.php'); //Import connect
                     $sql="SELECT * FROM products";
