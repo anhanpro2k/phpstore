@@ -1,71 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <?php
+<?php
     include("adminpartials/head.php");
     ?>
-<body class="hold-transition skin-blue sidebar-mini ">
-<div class="wrapper">
 
-<?php 
+<body class="hold-transition skin-blue sidebar-mini ">
+    <div class="wrapper">
+
+        <?php 
 include("adminpartials/session.php");
 include("adminpartials/header.php");
 include("adminpartials/aside.php");
-?>  
+?>
 
 
-  <?php 
+        <?php 
   include("adminpartials/aside")
   ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
-    
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class ="col-sm-3">
-            </div>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                Dashboard
+                <small>Control panel</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
 
-            <div class="col-sm-6">
-                <form role="form" action="cathandler.php" method="POST">
-                    <div class="box-body">
-                        <div class="form-group">
-                        <h1>Category</h1>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <input type="txt" class="form-control" id="category" placeholder="Enter category" name="name">
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <form role="form" action="cathandler.php" method="POST">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <h1>Category</h1>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <input type="txt" class="form-control" id="category"
+                                                placeholder="Enter category" name="name">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
+                            <!-- /.box-body -->
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div class ="col-sm-3">
-            </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
         </div>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
 
-  <?php 
+        <?php 
   include("adminpartials/footer.php");
   ?>
 </body>
+
 </html>
