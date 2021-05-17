@@ -13,10 +13,18 @@ include("partials/connect.php");
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
+                    <?php
+                    session_start();
+                        if(!empty($_SESSION['username'])) {?>
+                    <!--Check if session username is empty-->
+                    <a class='flex-c-m trans-04 p-lr-25'>Hi <?=$_SESSION['username']?></a>
+                    <a href='handler/customerlogout.php' class='flex-c-m trans-04 p-lr-25'>Logout</a>
+                    <?php
+                    } else { ?>
+                    <a href='customerforms.php' class='flex-c-m trans-04 p-lr-25'>Login </a>
+                    <?php }
+                    ?>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
                 </div>
             </div>
         </div>
@@ -51,20 +59,16 @@ include("partials/connect.php");
                 </div>
 
                 <!-- Icon header -->
+
                 <div class="wrap-icon-header flex-w flex-r-m">
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 " onclick="location.href='cart.php'"
                         data-notify="2">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
-
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                        data-notify="0">
-                        <i class="zmdi zmdi-favorite-outline"></i>
-                    </a>
                 </div>
             </nav>
         </div>
@@ -78,13 +82,14 @@ include("partials/connect.php");
         </div>
 
         <!-- Icon header -->
+
         <div class="wrap-icon-header flex-w flex-r-m m-r-15">
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
                 <i class="zmdi zmdi-search"></i>
             </div>
 
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                data-notify="2">
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+                onclick="location.href='cart.php'" data-notify="2">
                 <i class="zmdi zmdi-shopping-cart"></i>
             </div>
 
@@ -145,7 +150,7 @@ include("partials/connect.php");
                 <img src="images/icons/icon-close2.png" alt="CLOSE">
             </button>
 
-            <form class="wrap-search-header flex-w p-l-15">
+            <form class="wrap-search-header flex-w p-l-15" action="product.php">
                 <button class="flex-c-m trans-04">
                     <i class="zmdi zmdi-search"></i>
                 </button>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <?php 
 include ("partials/head.php");
 ?>
@@ -15,48 +17,36 @@ include ("partials/head.php");
     <br />
     <div class="bg0 m-t-23 p-b-140">
         <div class="container">
+
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
+                    onclick="location.href='product.php'">
+                    All Products
+                </button>
+                <?php
+                    if(!isset($_GET['search'])) {
+                        $_GET['search']="";
+                    }
+                    include("partials/connect.php");
+                    $sqlCategories = "SELECT * FROM categories";
+                    $resultCategories = $connect -> query($sqlCategories);
+
+					while($final = $resultCategories->fetch_assoc()) {?>
+
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
+                    onclick="location.href='product.php?search=<?=$_GET['search']?>&category_id=<?=$final['id']?>'">
+                    <?=$final['name']?>
+                </button>
+
+                <?php }?>
+
+
+            </div>
             <div class="flex-w flex-sb-m p-b-52">
-                <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                        All Products
-                    </button>
 
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                        Women
-                    </button>
 
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                        Men
-                    </button>
 
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-                        Bag
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-                        Shoes
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-                        Watches
-                    </button>
-
-                </div>
-
-                <div class="flex-w flex-c-m m-tb-10">
-                    <div
-                        class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-                        <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-                        <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                        Filter
-                    </div>
-
-                    <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-                        <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-                        <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                        Search
-                    </div>
-                </div>
 
                 <!-- Search product -->
                 <div class="dis-none panel-search w-full p-t-10 p-b-15">
@@ -272,21 +262,44 @@ include ("partials/head.php");
 
 
                 <?php 
-					include("partials/connect.php");
-					$sql = "SELECT * FROM products";
+                    $results_per_page = 8;
+                //Find number of page
+                $sql = "SELECT * FROM products WHERE name LIKE '%{$_GET['search']}%' AND status = 1";
+                if(isset($_GET['category_id'])) {
+                $sql = "SELECT * FROM products WHERE name LIKE '%{$_GET['search']}%' AND category_id =
+                {$_GET['category_id']} AND status = 1";
+                }
+                $result = $connect -> query($sql);
+                $number_of_pages = ceil(mysqli_num_rows($result)/$results_per_page);
+                
+                //Get current page number
+                if(!isset($_GET['page'])) {
+                    $page = 1;
+                } else {
+                    $page = $_GET['page'];
+                }
 
-					$result = $connect -> query($sql);
+                //Show result
+                $this_page_first_result = ($page-1)*$results_per_page;
+                $sql = "SELECT * FROM products WHERE status = 1 AND name LIKE '%{$_GET['search']}%' LIMIT ".$this_page_first_result . ',' .  $results_per_page;
+                if(isset($_GET['category_id'])) {
+                $sql = "SELECT * FROM products WHERE status = 1 AND name LIKE '%{$_GET['search']}%' AND category_id =
+                {$_GET['category_id']} LIMIT ".$this_page_first_result . ',' .  $results_per_page;
+                }
+                $result = $connect -> query($sql);
 
-					while($final = $result->fetch_assoc()) {?>
+
+                while($final = $result->fetch_assoc()) {?>
 
 
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="<?=$final['picture']?>" alt="IMG-PRODUCT">
+                            <img src="<?=$final['picture']?>" alt="IMG-PRODUCT"
+                                style="min-height: 400px;max: height 400px;">
 
-                            <a href="details.php?detail_id=<?=$final['id']?>"
+                            <a href="details.php?details_id=<?=$final['id']?>"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                 Quick View
                             </a>
@@ -317,9 +330,29 @@ include ("partials/head.php");
 
                 <?php } ?>
 
-
+                <?php
+                        if(isset($_GET['category_id'])) {
+                            $pageURL = "product.php?search={$_GET['search']}&category_id={$_GET['category_id']}";
+                        } else {
+                            $pageURL = "product.php?search={$_GET['search']}";
+                        }
+                ?>
             </div>
 
+            <ul class="pagination">
+                <li><a href="<?=$pageURL?>&page=1">&laquo;</a></li>
+                <?php
+                    for($i=1;$i<=$number_of_pages;$i++) {
+                        if($i==$page) {
+                            echo "<li class='active'><a href='#'>$i</a></li>";
+                        } else {
+                            echo "<li><a href='$pageURL"."&page=$i'>$i</a></li>";
+                        }
+                    }
+                ?>
+                <li><a href="<?=$pageURL?>&page=<?=$number_of_pages?>">&raquo;</a></li>
+
+            </ul>
 
         </div>
     </div>

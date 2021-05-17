@@ -15,7 +15,7 @@ include("adminpartials/aside.php");
 
 
         <?php 
-  include("adminpartials/aside")
+  include("adminpartials/aside.php")
   ?>
 
         <!-- Content Wrapper. Contains page content -->

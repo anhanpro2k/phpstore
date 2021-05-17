@@ -3,6 +3,18 @@
 <?php
     include("adminpartials/head.php");
     ?>
+<style>
+table,
+th,
+td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+table {
+    border-spacing: 15px;
+}
+</style>
 
 <body class="hold-transition skin-blue sidebar-mini ">
     <div class="wrapper">
@@ -12,6 +24,8 @@ include("adminpartials/session.php");
 include("adminpartials/header.php");
 include("adminpartials/aside.php");
 ?>
+
+
 
 
         <!-- Left side column. contains the logo and sidebar -->
@@ -43,19 +57,46 @@ include("adminpartials/aside.php");
                     $sql = "SELECT * FROM products WHERE id = {$id}";
                     $results = $connect -> query($sql);
                     $final=$results->fetch_assoc();
-                    echo "You are selected product:
-                    <h3>Id : {$final['id']}</h3>
-                    <h3>Name : {$final['name']}</h3>
-                    <h3>Price : {$final['price']}</h3>
-                    <h3>Description : {$final['description']}</h3>
-                    <img src=\"../{$final['picture']}\" width=\"100px\" height=\"100px\">
-                    ";
-                ?>
-                    </div>
 
 
 
-                    <div class="col-sm-3">
+                    echo "You are selected product";
+                    ?>
+
+
+
+                        <table>
+                            <tr>
+                                <td style="background-color:#3C8DBC;color:white">ID</td>
+                                <td><?=$final['id']?></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#3C8DBC;color:white">Name</td>
+                                <td><?=$final['name']?></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#3C8DBC;color:white">Price</td>
+                                <td><?=$final['price']?></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#3C8DBC;color:white">Description</td>
+                                <td><?=$final['description']?></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#3C8DBC;color:white">Image</td>
+                                <td>
+                                    <img src="../<?=$final['picture']?>" width="400px" height="600px">
+
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+
+
+
+
                     </div>
                 </div>
             </section>

@@ -4,10 +4,12 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="dist/img/icons8-read_online.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>
+                    <?=$_SESSION['emailadmin']?>
+                </p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -44,6 +46,18 @@
             <li>
                 <a href="productshow.php">
                     <i class="fa fa-th"></i> <span>Products</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ordersshow.php">
+                    <i class="fa fa-th"></i> <span>Orders</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="statistic.php">
+                    <i class="fa fa-th"></i> <span>Statistic</span>
                 </a>
             </li>
 

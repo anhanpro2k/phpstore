@@ -3,6 +3,18 @@
 <?php
     include("adminpartials/head.php");
     ?>
+<style>
+table,
+th,
+td {
+    border: 1px solid black;
+    padding: 30px;
+}
+
+table {
+    border-spacing: 30px;
+}
+</style>
 
 <body class="hold-transition skin-blue sidebar-mini ">
     <div class="wrapper">
@@ -16,7 +28,7 @@
 
         <!-- Left side column. contains the logo and sidebar -->
         <?php 
-  include("adminpartials/aside")
+  include("adminpartials/aside.php")
   ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -34,46 +46,62 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="row">
+                <h1>Hoverable Table</h1>
+                <a href="products.php">
+                    <button style="color:green">Add New</button>
+                </a>
+                <hr>
 
-                    <div class="col-sm-9">
-                        <a href="products.php">
-                            <button style="color:green">Add New</button>
-                        </a>
-                        <?php
+                <table>
+                    <tr id="header" style="color:white; background-color:#3C8DBC">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php
                     include('../partials/connect.php'); //Import connect
-                    $sql="SELECT * FROM products";
+                    $sql="SELECT * FROM products WHERE status = 1";
                     $results = $connect->query($sql);
-
-                    while($final=$results->fetch_assoc()){
-                      echo "
-                      <a href=\"proshow.php?pro_id={$final['id']}\">
-                      <h1> {$final['id']} : {$final['name']} </h1> <br/>
-                      </a>
-
-                      <a href=\"proupdate.php?up_id={$final['id']}\">
-                        <button>Update</button>
-                      </a>
-
-                      <a href=\"prodelete.php?del_id={$final['id']}\">
-                        <button style=\"color:red\">Delete</button>
-                      </a><br/><hr/>
-                      ";
+                    while($final=$results->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <td><?=$final['id']?></td>
+                        <td>
+                            <a href="proshow.php?pro_id=<?=$final['id']?>">
+                                <h3><?=$final['name']?></h3>
+                            </a>
+                        </td>
+                        <td><?=$final['price']?></td>
+                        <td>
+                            <a href="proupdate.php?up_id=<?=$final['id']?>">
+                                <button>Edit</button>
+                            </a>
+                            <a href="prodelete.php?del_id=<?=$final['id']?>">
+                                <button style="color:red">Hide</button>
+                            </a><br />
+                        </td>
+                    </tr>
+                    <?php
                     }
-                ?>
-                    </div>
+                    ?>
+
+                </table>
 
 
 
-                    <div class="col-sm-3">
-                    </div>
+
+
+
+                <div class="col-sm-3">
                 </div>
-            </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-        <?php 
+    <?php 
   include("adminpartials/footer.php");
   ?>
 </body>

@@ -16,7 +16,7 @@ include("adminpartials/aside.php");
 
         <!-- Left side column. contains the logo and sidebar -->
         <?php 
-  include("adminpartials/aside")
+  include("adminpartials/aside.php")
   ?>
 
         <!-- Content Wrapper. Contains page content -->
